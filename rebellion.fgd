@@ -1,0 +1,7 @@
+@PointClass base(Targetname, Origin) = reb_objective : "Make a new Objective."
+[
+	index(float)			: "Index" : "1" : "Controls the priority of the Objective, 1 would be the first Objective to complete."
+	description(string)			: "Description" : "1" : "Shows a description for the Objective on the player(s) screen."
+	
+	input ObjectiveWin(void) : "Objective Win"
+]

@@ -1,0 +1,8 @@
+"Gamemode"
+{
+	"base"		"sandbox"
+	"title"		"Rebellion"
+	"maps"		"^reb_"
+	"menusystem"	"1"
+	"workshopid"	""
+}
