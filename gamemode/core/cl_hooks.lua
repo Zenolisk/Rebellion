@@ -44,6 +44,15 @@ net.Receive("ObjUpdate", function(data)
 	table.insert(ObjTable, index, {description = tostring(desc), complete = bool})
 end)
 
+net.Receive("ResUpdate", function(data)
+	local resTable = net.ReadTable()
+	
+	resources = resTable
+	
+end)
+	
+	
+
 function GM:HUDPaint()
 	client = LocalPlayer()
 	
@@ -57,6 +66,19 @@ function GM:HUDPaint()
 	--Objectives
 	for i=1,table.Count(ObjTable) do
 		draw.SimpleText("Objective: "..ObjTable[i].description, "Reb_HUD_small", 10, ScrH() * 0.01 + 20*i, ObjTable[i].complete and Color(80,255,80,255) or Color(255,80,80,255))
+	end
+	if (resources) then
+		drawResources()
+	end
+end
+
+function drawResources()
+local n = -1
+	for k, v in pairs(resources) do
+	n = n+1
+	
+		draw.SimpleText(k..": "..v, "Reb_HUD_small", 30 + (110 * n), 15, Color(255, 255, 255, 255))
+	
 	end
 end
 

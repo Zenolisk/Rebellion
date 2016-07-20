@@ -1,20 +1,24 @@
 util.AddNetworkString("ObjUpdate")
+util.AddNetworkString("ResUpdate")
 
 function GM:Initialize()
 
 	--Create the Objective Table and fill it.
-
+	local amt = 100
 	ObjTable = {}
+	resources = {
+		food = amt,
+		scraps = amt,
+		weapons = amt
+	}
 	
 	--Add a timer to be sure everything exists in the game world before calling it.
 	
 	timer.Simple(0.1, function()
+		resourceSyncToClient()
 		for k, v in pairs(ents.FindByClass("reb_objective")) do
 			
 			table.insert(ObjTable, tonumber(v.index), {description = tostring(v.desc), complete = false})
-			if math.random( 1, 10 ) <= 5 then -- Just added for testing
-				entity.create("reb_crate", v:GetPos())
-			end
 		end
 	end)
 	
@@ -49,6 +53,19 @@ function GM:PlayerSpawn(client)
 	end
 end
 
+function resourceSyncToClient()
+	net.Start("ResUpdate")
+			net.WriteTable(resources)
+	net.Send(player.GetAll())
+end
+
+function addResources(res, amt)
+	local currentRes = resources[res]
+	local updated = currentRes + amt
+		resources[res] = updated
+		resourceSyncToClient()
+
+end
 
 concommand.Add("sv_objectives", function()
 	if ObjTable then

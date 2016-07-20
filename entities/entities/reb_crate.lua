@@ -21,6 +21,9 @@ local res = {
 	function ENT:Use(activator, ply)
 	if activator:KeyDownLast(IN_USE) then return end
 	if (not ply:IsPlayer()) then return end
+	if ( self:IsPlayerHolding() ) then self:SetHolder(nil) return end
+	activator:PickupObject( self )
+	self:SetHolder(ply)
 	activator:PrintMessage(HUD_PRINTCENTER, "You are picking up "..self.Amount.." amount of "..self.Resource..".")
 	end
 	
@@ -34,6 +37,12 @@ local res = {
 	end
 	function ENT:GetResourceAmount()
 		return self.Amount
+	end
+	function ENT:SetHolder(ply)
+		self.Holder = ply
+	end
+	function ENT:GetHolder()
+	return self.Holder
 	end
 	
 else
