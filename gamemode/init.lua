@@ -7,3 +7,5 @@ AddCSLuaFile("sh_config.lua")
 include("core/sv_hooks.lua")
 include("core/sh_hooks.lua")
 
+include("libs/sv_utility.lua")
+

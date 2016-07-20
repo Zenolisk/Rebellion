@@ -10,7 +10,11 @@ function GM:Initialize()
 	
 	timer.Simple(0.1, function()
 		for k, v in pairs(ents.FindByClass("reb_objective")) do
+			
 			table.insert(ObjTable, tonumber(v.index), {description = tostring(v.desc), complete = false})
+			if math.random( 1, 10 ) <= 5 then -- Just added for testing
+				entity.create("reb_crate", v:GetPos())
+			end
 		end
 	end)
 	
