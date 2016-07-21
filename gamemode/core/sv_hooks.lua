@@ -43,6 +43,9 @@ end
 
 function GM:PlayerSpawn(client)
 
+	client:SetModel("models/player/group03/male_09.mdl")
+	client:SetupHands()
+
 	--Update Objectives for new spawns
 	for k, v in pairs(ObjTable) do
 		net.Start("ObjUpdate")
