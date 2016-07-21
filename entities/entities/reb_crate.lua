@@ -6,9 +6,10 @@ ENT.AdminSpawnable		= true
 
 if (SERVER) then
 local res = {
-	"food",
-	"weapons",
-	"scraps"
+	"Food",
+	"Scraps",
+	"Electronics",
+	"Chemicals"
 
 }
 	function ENT:Initialize()
@@ -16,7 +17,7 @@ local res = {
 		self:PhysicsInit(SOLID_VPHYSICS)
 		self:SetMoveType(MOVETYPE_VPHYSICS)
 		self:SetSolid(SOLID_VPHYSICS)
-		self:setResource(res[math.random(1, 3)], math.random(20, 100))
+		self:setResource(res[math.random(1, table.Count(res))], math.random(20, 100))
 	end
 	function ENT:Use(activator, ply)
 	if activator:KeyDownLast(IN_USE) then return end

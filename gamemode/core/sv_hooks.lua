@@ -4,12 +4,13 @@ util.AddNetworkString("ResUpdate")
 function GM:Initialize()
 
 	--Create the Objective Table and fill it.
-	local amt = 100
+	local amt = 100 -- Add a config for this later.
 	ObjTable = {}
 	resources = {
-		food = amt,
-		scraps = amt,
-		weapons = amt
+		Food = amt,
+		Electronics = amt,
+		Chemicals = amt,
+		Scraps = amt
 	}
 	
 	--Add a timer to be sure everything exists in the game world before calling it.

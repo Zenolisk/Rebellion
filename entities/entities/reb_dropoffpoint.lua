@@ -56,7 +56,9 @@ if (SERVER) then
 				local amt = v:GetResourceAmount()
 				addResources(res, amt)
 				self:UpdateDecor()
-				v:GetHolder():PrintMessage(HUD_PRINTCENTER, "You have delivered "..amt.." amount of "..res.." to your storage.")
+				if v:GetHolder() then
+					v:GetHolder():PrintMessage(HUD_PRINTCENTER, "You have delivered "..amt.." amount of "..res.." to your storage.")
+				end
 				self:EmitSound("buttons/button4.wav")
 				v:Remove()
 			end
@@ -65,9 +67,10 @@ if (SERVER) then
 	end
 	
 	function ENT:UpdateDecor()
-	local food = resources.food
-	local weap = resources.weap
-	local scrap = resources.scrap
+	local food = resources.Food
+	local electronics = resources.Electronics
+	local chemicals = resources.Chemicals
+	local scraps = resources.Scraps
 	
 	
 	end
