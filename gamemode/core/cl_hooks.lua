@@ -70,19 +70,14 @@ function GM:HUDPaint()
 	if (resources) then
 		drawResources()
 	end
-	local trace = LocalPlayer():GetEyeTrace()
-	if (trace.Entity.ShouldDraw) and (math.Distance(trace.StartPos.x, trace.StartPos.y, trace.HitPos.x, trace.HitPos.y) <= 200) then
-	entity = trace.Entity
-	entity:textDisplay()
-	end
 end
 
 function drawResources()
 local n = -1
 	for k, v in pairs(resources) do
 	n = n+1
-		
-		draw.SimpleText(k..": "..v, "Reb_HUD_small", ScrW() - 150 , 15 + (n * 15), Color(255, 255, 255, 255))
+	
+		draw.SimpleText(k..": "..v, "Reb_HUD_small", 30 + (110 * n), 15, Color(255, 255, 255, 255))
 	
 	end
 end
