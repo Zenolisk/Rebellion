@@ -1,6 +1,9 @@
 --Lib for objectives, from here we control the objective entity and shizzles
 
-hook.Add("Initialize", "reb_objinit", function()
+
+
+if SERVER then
+	hook.Add("Initialize", "reb_objinit", function()
 
 --Add a timer to be sure everything exists in the game world before calling it.
 
@@ -13,8 +16,6 @@ hook.Add("Initialize", "reb_objinit", function()
 	end)
 
 end)
-
-if SERVER then
 	function GM:ShowHelp(client)
 	net.Start("reb_objectives")
 	net.Send(client)
