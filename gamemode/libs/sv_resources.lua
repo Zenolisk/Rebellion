@@ -10,11 +10,20 @@ hook.Add("Initialize", "reb_resources_initialize", function()
 	}
 	resourceSyncToClient()
 end)
+hook.Add("PlayerInitialSpawn", "reb_resources_PlayerInitialSpawn", function(ply)
 
-function resourceSyncToClient()
-	net.Start("ResUpdate")
-			net.WriteTable(resources)
-	net.Send(player.GetAll())
+	resourceSyncToClient(ply)
+end)
+function resourceSyncToClient(ply)
+	if(ply) then
+		net.Start("ResUpdate")
+				net.WriteTable(resources)
+		net.Send(ply)
+	else
+		net.Start("ResUpdate")
+				net.WriteTable(resources)
+		net.Send(player.GetAll())
+	end
 end
 
 function addResources(res, amt)

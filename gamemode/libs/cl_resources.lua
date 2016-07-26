@@ -1,5 +1,6 @@
 hook.Add("HUDPaint", "reb_resources", function()
-	if (resoruces) then
+
+	if (resources) then
 		drawResources()
 	end
 end)
