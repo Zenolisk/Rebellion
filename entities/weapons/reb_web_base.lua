@@ -128,15 +128,13 @@ if (CLIENT) then
 		local EP, EA, FT, CT, DIFF = EyePos(), EyeAngles(), FrameTime(), CurTime(), LT - CurTime()
 		LT = CurTime()
 		local PA = owner:GetViewPunchAngles()
-		local vel = clamp(owner:GetVelocity():Length2D()/owner:GetWalkSpeed(), 0, 1.5)
+		local vel = clamp(owner:GetVelocity():Length2D()/reb.config.walkSpeed, 0, 1.5)
 		local rest = 1 - clamp(owner:GetVelocity():Length2D()/20, 0, 1)
 		local DIFFB = ((1 - DIFF)*.05)
 
 		posOutput = Vector(0, 0, 0)
-		--curStep = curStep + (vel/math.pi) * (FT * 10)
 		curStep = CT * ((vel < .5) and 5 or 15)
-		local ws = owner:GetWalkSpeed()
-		
+
 		self.ironMul = int(.1, self.ironMul, (!self.Owner:OnGround()) and (!self.Owner:OnGround() and 0 or .1) or 1)
 
 		bobPos[1] = -sin(curStep/2)*vel
@@ -167,7 +165,7 @@ if (CLIENT) then
 		ang:RotateAroundAxis(ang:Up(), angOutput[2])
 		ang:RotateAroundAxis(ang:Forward(), angOutput[3])
 		
-		ang:Normalize()
+	--	ang:Normalize()
 
 		pos = pos + posOutput.x * Right
 		pos = pos + posOutput.y * Forward
@@ -246,8 +244,7 @@ function SWEP:CanReload()
 	local clip = self:Clip1()
 	local reserve = self:Ammo1()
 
-	return (clip < self.Primary.ClipSize and
-			reserve > 0)
+	return (clip < self.Primary.ClipSize and reserve > 0)
 end
 
 function SWEP:Reload()
@@ -292,19 +289,40 @@ function SWEP:GetSpread()
 end
 
 function SWEP:CSShootBullet( dmg, recoil, numbul, cone )
-	numbul 	= numbul 	or 1
+	numbul 	= numbul or 1
+	local velo = self.Owner:GetVelocity():Length()
 	local ironMul = (self:GetIronsight() and (self.IronPrecise or .5) or 1)
-	local velMul = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetWalkSpeed(), 0, .5)
-
+	local velMul = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetWalkSpeed(), 0, 0.5)
+	
+	if self.Owner:IsOnGround() then
+		cone = cone
+	else
+		cone = cone * 5
+	end
+	
+	if self:GetIronsight() then
+		cone = cone * 0.8
+	end
+	
+	if self.Owner:Crouching() then
+		cone = cone * 0.7
+	end
+	
+	if velo <= 10 then
+		cone = cone
+	elseif velo >= 11 then
+		cone = cone * 2.5
+	end
+	
 	local bullet = {}
 	bullet.Num 		= numbul
 	bullet.Src 		= self.Owner:GetShootPos()
 	bullet.Dir 		= (self.Owner:EyeAngles() + self.Owner:GetViewPunchAngles()):Forward()
-	bullet.Spread 	= Vector(cone, cone*.5, 0) * (velMul + 1)	
 	bullet.Tracer	= 2		
 	bullet.TracerName = "Tracer"						
-	bullet.Force	= dmg*0.1								
+	bullet.Force	= dmg*0.5								
 	bullet.Damage	= dmg
+	bullet.Spread 	= Vector(cone, cone, cone)
 	
 	if (CLIENT) then
 		self.Owner:SetEyeAngles(self.Owner:EyeAngles() + Angle(recoil * - .5, math.random(recoil* - .05, recoil*.05), 0))
@@ -323,7 +341,6 @@ function SWEP:SecondaryAttack()
 	self:SetIronsight(!self:GetIronsight())
 	self.Weapon:SetNextPrimaryFire( CurTime() + .4 )
 	self.Weapon:SetNextSecondaryFire( CurTime() + .4 )
-	print(self:GetIronsight())
 end
 
 function SWEP:DrawHUD()

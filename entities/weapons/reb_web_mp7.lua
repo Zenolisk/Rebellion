@@ -3,7 +3,7 @@ AddCSLuaFile()
 
 SWEP.PrintName			= "9MM HK MP7"			
 SWEP.Author				= "Zenolisk"
-SWEP.Slot				= 3
+SWEP.Slot				= 2
 SWEP.SlotPos			= 1
 SWEP.BobScale = 0
 SWEP.SwayScale = 0
@@ -27,7 +27,7 @@ SWEP.Primary.Sound			= Sound( "weapons/smg1/smg1_fire1.wav" )
 SWEP.Primary.Recoil			= 2
 SWEP.Primary.Damage			= 14
 SWEP.Primary.NumShots		= 1
-SWEP.Primary.Cone			= 0.04
+SWEP.Primary.Cone			= 0.02
 SWEP.Primary.ClipSize		= 30
 SWEP.Primary.Delay			= 0.073
 SWEP.Primary.DefaultClip	= 0

@@ -10,23 +10,18 @@ ENT.AutomaticFrameAdvance = true
 ENT.Spawnable			= false
 ENT.AdminSpawnable		= false
 
-ENT.desc = ""
-ENT.index = 0
-ENT.status = 0
-ENT.hidden = false
+ENT.screen = "https://github.com/Zenolisk/Rebellion"
+ENT.playerModel = "Default"
 
 function ENT:KeyValue(key, value)
-	if key == "description" then
-		self.desc = tostring(value)
+	if key == "screenURL" then
+		if value != "url" then
+			self.screen = tostring(value)
+		end
 	end
 	
-	if key == "index" then
-		self.index = tonumber(value)
-	end
-	
-	if key == "hidden" then
-		self.hidden = tobool(value)
-		print(value)
+	if key == "PlayerModel" then
+		self.playerModel = tostring(value)
 	end
 end
 

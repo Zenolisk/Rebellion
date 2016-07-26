@@ -3,7 +3,7 @@ AddCSLuaFile()
 
 SWEP.PrintName			= "9MM HK USP MATCH"			
 SWEP.Author				= "Zenolisk"
-SWEP.Slot				= 3
+SWEP.Slot				= 1
 SWEP.SlotPos			= 1
 SWEP.BobScale = 0
 SWEP.SwayScale = 0
