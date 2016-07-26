@@ -1,7 +1,21 @@
 @PointClass base(Targetname, Origin) = reb_objective : "Make a new Objective."
 [
 	index(float)			: "Index" : "1" : "Controls the priority of the Objective, 1 would be the first Objective to complete."
-	description(string)			: "Description" : "1" : "Shows a description for the Objective on the player(s) screen."
+	description(string)			: "Description" : "text" : "Shows a description for the Objective on the player(s) screen."
+	hidden(Choices) : "Hidden" : 1 : "Control whether the Objective is Hidden or not." =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
 	
 	input ObjectiveWin(void) : "Objective Win"
+	input ObjectiveFail(void) : "Objective Fail"
+	input ObjectiveUnHide(void) : "Objective Unhide"
+	input ObjectiveHide(void) : "Objective Hide"
+]
+
+@PointClass base(Targetname, Origin) = reb_settings : "Make special Changes with this."
+[
+	screenURL(string)			: "screenURL" : "url" : "Type in a URL that leads to your map picture [best choice is JPG with 1000x600]"
+	PlayerModel(string)			: "PlayerModel" : "Default" : "Select a Player Model Group for your map [Default or Refugee]"
 ]
