@@ -3,12 +3,14 @@ AddCSLuaFile()
 ENT.Base = "base_anim"
 ENT.Author			= "Oskar"
 ENT.AdminSpawnable		= true
+ENT.ShouldDraw			= true
 
 if (SERVER) then
 local res = {
-	"food",
-	"weapons",
-	"scraps"
+	"Food",
+	"Scraps",
+	"Electronics",
+	"Chemicals"
 
 }
 	function ENT:Initialize()
@@ -16,7 +18,10 @@ local res = {
 		self:PhysicsInit(SOLID_VPHYSICS)
 		self:SetMoveType(MOVETYPE_VPHYSICS)
 		self:SetSolid(SOLID_VPHYSICS)
-		self:setResource(res[math.random(1, 3)], math.random(20, 100))
+		self:SetTrigger(true)
+		if !(self.Resource) then
+			self:setResource(res[math.random(1, table.Count(res))], math.random(20, 100))
+		end
 	end
 	function ENT:Use(activator, ply)
 	if activator:KeyDownLast(IN_USE) then return end
@@ -24,19 +29,36 @@ local res = {
 	if ( self:IsPlayerHolding() ) then self:SetHolder(nil) return end
 	activator:PickupObject( self )
 	self:SetHolder(ply)
-	activator:PrintMessage(HUD_PRINTCENTER, "You are picking up "..self.Amount.." amount of "..self.Resource..".")
+	activator:PrintMessage(HUD_PRINTCENTER, "You are picking up "..self:GetResourceAmount().." amount of "..self:GetResource()..".")
+	end
+	
+	function ENT:Touch(entity)
+		if (self:GetClass() == entity:GetClass()) then
+			if entity:IsPlayerHolding() then
+				if (self:GetResource() == entity:GetResource()) then
+					self:addResource(entity:GetResourceAmount())
+					entity:Remove()
+				end
+			end
+		end
 	end
 	
 	function ENT:setResource(res, amt)
-		self.Resource = res
-		self.Amount = amt
+		self:SetNWString("Resource", res)
+		self:SetNWInt( "Amount", amt)
+	end
+	
+	function ENT:addResource(amt)
+		local oldamt = self:GetResourceAmount()
+		local new = amt + oldamt
+		self:SetNWString("Amount", new)
 	end
 	
 	function ENT:GetResource()
-		return self.Resource
+		return self:GetNWString("Resource")
 	end
 	function ENT:GetResourceAmount()
-		return self.Amount
+		return self:GetNWInt("Amount")
 	end
 	function ENT:SetHolder(ply)
 		self.Holder = ply
@@ -46,5 +68,23 @@ local res = {
 	end
 	
 else
+	function ENT:GetResource()
+		return self:GetNWString("Resource")
+	end
+	function ENT:GetResourceAmount()
+		return self:GetNWInt("Amount")
+	end
+	function ENT:textDisplay()
+	local pos = self:GetPos():ToScreen()
+		surface.SetFont( "Reb_HUD_med" )
+		surface.SetTextColor( 230, 100, 20, 255 )
+		surface.SetTextPos( pos.x, pos.y - 50 )
+		surface.DrawText( "Resource Crate" )
+		
+		surface.SetFont( "Reb_HUD_small" )
+		surface.SetTextColor( 0, 200, 20, 255 )
+		surface.SetTextPos( pos.x, pos.y - 20 )
+		surface.DrawText( "Contains "..self:GetResourceAmount().." amounts of "..self:GetResource().."." )
+	end
 	
 end
