@@ -2,7 +2,6 @@ util.AddNetworkString("ResUpdate")
 
 hook.Add("Initialize", "reb_resources_initialize", function()
 	local amt = 100 -- Add a config for this later.
-	ResTable = {}
 	resources = {
 		Food = amt,
 		Electronics = amt,
