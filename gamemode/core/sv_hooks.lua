@@ -4,10 +4,6 @@ function GM:Initialize()
 	
 end
 
-
-
-
-
 local painSounds = {
 "vo/npc/male01/pain01.wav",
 "vo/npc/male01/pain02.wav",
