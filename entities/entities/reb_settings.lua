@@ -26,7 +26,7 @@ function ENT:KeyValue(key, value)
 	end
 	
 	if key == "useResources" then
-		self.useResources = tostring(value)
+		self.useResources = value
 	end
 end
 

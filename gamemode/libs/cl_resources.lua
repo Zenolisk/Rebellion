@@ -1,7 +1,8 @@
 hook.Add("HUDPaint", "reb_resources", function()
-
+	if (SetTable[1].useResources) then
 	if (resources) then
 		drawResources()
+	end
 	end
 end)
 
