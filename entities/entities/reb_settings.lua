@@ -12,6 +12,7 @@ ENT.AdminSpawnable		= false
 
 ENT.screen = "https://github.com/Zenolisk/Rebellion"
 ENT.playerModel = "Default"
+ENT.useResources = true
 
 function ENT:KeyValue(key, value)
 	if key == "screenURL" then
@@ -22,6 +23,10 @@ function ENT:KeyValue(key, value)
 	
 	if key == "PlayerModel" then
 		self.playerModel = tostring(value)
+	end
+	
+	if key == "useResources" then
+		self.useResources = tostring(value)
 	end
 end
 

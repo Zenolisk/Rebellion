@@ -17,5 +17,6 @@
 @PointClass base(Targetname, Origin) = reb_settings : "Make special Changes with this."
 [
 	screenURL(string)			: "screenURL" : "url" : "Type in a URL that leads to your map picture [best choice is JPG with 1000x600]"
-	PlayerModel(string)			: "PlayerModel" : "Default" : "Select a Player Model Group for your map [Default or Refugee]"
+	playerModel(string)			: "PlayerModel" : "Default" : "Select a Player Model Group for your map [Default or Refugee]"
+	useResources(bool)			: "useResources" : "true" : "Should the team resource system be enabled [true or false]"
 ]
