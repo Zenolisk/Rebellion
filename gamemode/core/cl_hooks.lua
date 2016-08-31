@@ -46,11 +46,3 @@ local hide = {
 hook.Add( "HUDShouldDraw", "HideHUD", function( name )
 	if ( hide[ name ] ) then return false end
 end )
-
-concommand.Add("cl_objectives", function()
-	if ObjTable then
-	PrintTable(ObjTable)
-	else
-	print("No table")
-	end
-end)

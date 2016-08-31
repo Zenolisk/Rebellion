@@ -1,50 +1,24 @@
---Lib for objectives, from here we control the objective entity and shizzles
-
-
+--Lib for objectives, from here we control the objective entity and shizzless
 
 if SERVER then
+	
 	hook.Add("Initialize", "reb_objinit", function()
 
---Add a timer to be sure everything exists in the game world before calling it.
+	--Add a timer to be sure everything exists in the game world before calling it.
 
-	ObjTable = {}
+		ObjTable = {}
 
-	timer.Simple(0.1, function()
-		for k, v in pairs(ents.FindByClass("reb_objective")) do	
-			table.insert(ObjTable, tonumber(v.index), {description = tostring(v.desc), status = 0, hide = v.hidden})
-		end
+		timer.Simple(0.1, function()
+			for k, v in pairs(ents.FindByClass("reb_objective")) do	
+				table.insert(ObjTable, tonumber(v.index), {description = tostring(v.desc), status = 0, hide = v.hidden})
+			end
+		end)
+
 	end)
 
-end)
 	function GM:ShowHelp(client)
-	net.Start("reb_objectives")
-	net.Send(client)
-	end
-	
-	function GM:PlayerSpawn(client)
-
-		--Update Objectives for new spawns
-		for k, v in pairs(ObjTable) do
-			net.Start("reb_objUpdate")
-				net.WriteInt(k, 32)
-				net.WriteString(v.description)
-				net.WriteInt(v.status, 32)
-				net.WriteBool(v.hide)
-			net.Send(client)
-		end
-		
-		if (SetTable[1].playerMapModel) then
-			client:SetModel(table.Random(reb.config.playerModel[SetTable[1].playerMapModel]))
-		else
-			client:SetModel("models/Humans/Group03/Male_09.mdl")
-		end
-		
-		client:SetupHands()
-		
-		client:SetCrouchedWalkSpeed(0.5)
-		client:SetWalkSpeed(reb.config.walkSpeed)
-		client:SetRunSpeed(reb.config.runSpeed)
-		
+		net.Start("reb_objectives")
+		net.Send(client)
 	end
 	
 	

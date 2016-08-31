@@ -1,6 +1,33 @@
 util.AddNetworkString("reb_startmenu")
-function GM:Initialize()
+util.AddNetworkString("reb_inventory")
+util.AddNetworkString("reb_invUpdate")
 
+function GM:PlayerSpawn(client)
+
+	--Update Objectives for new spawns
+	for k, v in pairs(ObjTable) do
+		net.Start("reb_objUpdate")
+			net.WriteInt(k, 32)
+			net.WriteString(v.description)
+			net.WriteInt(v.status, 32)
+			net.WriteBool(v.hide)
+		net.Send(client)
+	end
+	
+	if (SetTable[1].playerMapModel) then
+		client:SetModel(table.Random(reb.config.playerModel[SetTable[1].playerMapModel]))
+	else
+		client:SetModel("models/Humans/Group03/Male_09.mdl")
+	end
+	
+	client:SetupHands()
+	
+	client:SetCrouchedWalkSpeed(0.5)
+	client:SetWalkSpeed(reb.config.walkSpeed)
+	client:SetRunSpeed(reb.config.runSpeed)
+	client:SetViewOffsetDucked(Vector(0, 0, reb.config.duckHeight))
+	
+	client:Give("reb_hands")
 	
 end
 

@@ -150,22 +150,6 @@ local config = config
 
 local Length2D = FindMetaTable("Vector").Length2D
 
-hook.Add("Move", "CrouchRun", function(client, mv)
-	if (client:GetMoveType() == 8) then return end
-	if client:Crouching() then
-		if client:KeyDown(IN_SPEED) then
-			client:SetWalkSpeed(reb.config.walkSpeed + 150)
-		else
-			client:SetWalkSpeed(reb.config.walkSpeed)
-		end
-	elseif (client.sprint == true and client:IsOnGround() and !client:Crouching() and client:KeyDown(IN_FORWARD)) then
-		client:SetWalkSpeed(reb.config.sprintSpeed)
-	else
-		client:SetWalkSpeed(reb.config.walkSpeed)
-	end
-	
-end)
-
 function GM:CalcMainActivity(client, velocity)
 	local model = string_lower(client:GetModel())
 	local class = getAnimClass(model)
@@ -240,12 +224,7 @@ function GM:CalcMainActivity(client, velocity)
 				client.CalcIdeal = value
 			end
 		end
-
-		local ang = client:GetAimVector()
-		client:SetPoseParameter("body_pitch", math.Clamp(ang.z*90, -46, 90))
-		local pp = (client:GetPoseParameter("head_yaw")-.5)*-160
-        client:SetPoseParameter("body_yaw", math.Clamp(pp, -45, 45 ) )
-
+		
 		local override = client:GetNWFloat("seq")
 
 		if (override) then

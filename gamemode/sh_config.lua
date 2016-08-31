@@ -32,3 +32,7 @@ reb.config.sprintSpeed = 240
 reb.config.runSpeed = 160
 
 reb.config.walkSpeed = 92
+
+reb.config.duckHeight = 32
+
+reb.config.invMaxSize = 10

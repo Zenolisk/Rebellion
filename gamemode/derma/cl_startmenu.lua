@@ -9,7 +9,7 @@ end)
 local PANEL = {}
 	function PANEL:Init()
 		self:SetPos(0, 0)
-		self:SetSize(ScrW(), ScrH())
+		self:SetSize(1000, 700)
 		self:MakePopup()
 		self:Center()
 		self:SetTitle("")

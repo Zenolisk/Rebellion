@@ -1,3 +1,4 @@
+
 net.Receive("reb_objectives", function(length, client)
 	vgui.Create("reb_Objectives")
 end)
@@ -29,10 +30,12 @@ net.Receive("reb_objUpdate", function(data)
 	
 	table.remove(ObjTable, netindex)
 	table.insert(ObjTable, netindex, {description = tostring(netdesc), status = netstatus, hide = nethidden})
+	
 end)
 
 local PANEL = {}
 	function PANEL:Init()
+
 		self:SetPos(ScrW() * -0.5, ScrH() * 0.1)
 		self:SetSize(ScrW() * 0.35, ScrH() * 0.7)
 		self:MakePopup()
@@ -47,10 +50,14 @@ local PANEL = {}
 			for i=1,table.Count(ObjTable) do
 				if ObjTable[i].hide == false then
 					draw.SimpleText("Objective: "..ObjTable[i].description, "Reb_HUD_med", self:GetWide() * 0.5, self:GetTall() * 0.05 + 40*i, 
-					ObjTable[i].status == 0 and Color(20, 20, 20, 200) or ObjTable[i].status == 1 and Color(80, 255, 80, 200) or Color(255,80,80,200), 
+					ObjTable[i].status == 0 and Color(20, 20, 20, 200) or ObjTable[i].status == 1 and Color(80, 255, 80, 200) or Color(255, 80, 80, 200), 
 					TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				else
+					draw.SimpleText("???????????", "Reb_HUD_med", self:GetWide() * 0.5, self:GetTall() * 0.05 + 40*i, Color(20, 20, 20, 150), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 				end
 			end
+			
+			--PrintTable(ObjTable)
 			
 		end
 		

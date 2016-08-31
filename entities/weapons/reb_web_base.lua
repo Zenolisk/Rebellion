@@ -78,17 +78,6 @@ if (CLIENT) then
 
 	end
 
-	EVENT_VMUZZLE = 0
-	EVENT_WMUZZLE = 1
-	EVENT_SHELL = 2
-	EVENT_WSHELL = 2
-	local eventTable = {
-		[5001] = EVENT_VMUZZLE,
-		[5003] = EVENT_WMUZZLE,
-		[20] = EVENT_WSHELL,
-		[21] = EVENT_SHELL,
-	}
-
 	local posOutput = Vector(0, 0, 0)
 	local posTarget = Vector(0, 0, 0)
 	local angOutput = Angle(0, 0, 0)
