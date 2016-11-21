@@ -13,7 +13,7 @@ hook.Add("Initialize", "reb_setinit", function()
 				return
 			end
 		
-			table.insert(SetTable, {loadScreen = tostring(v.screen), playerMapModel = v.playerModel, useResources = v.useResources})
+			table.insert(SetTable, {loadScreen = tostring(v.screen), playerModel = v.model, timeLimit = v.time})
 		end
 	end)
 	

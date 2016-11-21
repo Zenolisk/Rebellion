@@ -1,6 +1,4 @@
 util.AddNetworkString("reb_startmenu")
-util.AddNetworkString("reb_inventory")
-util.AddNetworkString("reb_invUpdate")
 
 function GM:PlayerSpawn(client)
 
@@ -14,8 +12,8 @@ function GM:PlayerSpawn(client)
 		net.Send(client)
 	end
 	
-	if (SetTable[1].playerMapModel) then
-		client:SetModel(table.Random(reb.config.playerModel[SetTable[1].playerMapModel]))
+	if (SetTable[1].playerModel) then
+		client:SetModel(table.Random(reb.config.playerModel[SetTable[1].playerModel]))
 	else
 		client:SetModel("models/Humans/Group03/Male_09.mdl")
 	end

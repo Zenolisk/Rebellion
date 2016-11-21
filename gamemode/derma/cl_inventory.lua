@@ -1,13 +1,16 @@
-local inv = inv or {}
+
+net.Receive("reb_inventory", function(length, client)
+	if !reb.gui.inventory then
+		reb.gui.inventory = vgui.Create("reb_Invetory")
+	end
+end)
 
 net.Receive("reb_invUpdate", function(data)
 	local nettable = net.ReadTable()
-
+	if !inv then
+		inv = {}
+	end
 	inv = nettable
-end)
-
-net.Receive("reb_inventory", function(length, client)
-	vgui.Create("reb_Invetory")
 end)
 
 local PANEL = {}
@@ -36,9 +39,7 @@ local PANEL = {}
 		scroll:SetPos( 0, 0 )
 		
 		local amt = 1
-		
-		PrintTable(inv)
-		
+
 		if (inv) then
 			for k, v in pairs(inv) do
 				amt = amt + 1
@@ -56,13 +57,20 @@ local PANEL = {}
 					surface.DrawText(v.amount)
 				end
 				icon.DoClick = function(self)
-				--	local Menu = DermaMenu()
+					local Menu = DermaMenu()
 					
-				--	for k2, v2 in pairs(v.functions) do
-				--		Menu:AddOption(v2.text)
-				--	end
+					for k2, v2 in pairs(v.functions) do
+						Menu:AddOption(v2.text, function()
+
+						net.Start("reb_invUse")
+						net.WriteString(v.uniqueID)
+						net.WriteString(k2)
+						net.SendToServer()
+						
+						end)
+					end
 					
-				--	Menu:Open()
+					Menu:Open()
 				end
 			end
 		end
@@ -86,5 +94,6 @@ local PANEL = {}
 	
 	function PANEL:OnClose()
 		surface.PlaySound("reb/backpack_close.wav")
+		reb.gui.inventory = nil
 	end
 vgui.Register("reb_Invetory", PANEL, "DFrame")

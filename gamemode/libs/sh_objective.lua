@@ -20,15 +20,6 @@ if SERVER then
 		net.Start("reb_objectives")
 		net.Send(client)
 	end
-	
-	
-	concommand.Add("sv_objectives", function()
-		if ObjTable then
-		PrintTable(ObjTable)
-		else
-		print("No table")
-		end
-	end)
 
 	util.AddNetworkString("reb_objUpdate") -- Update network
 	util.AddNetworkString("reb_objectives") -- Menu network

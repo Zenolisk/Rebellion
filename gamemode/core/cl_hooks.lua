@@ -1,3 +1,4 @@
+reb.gui = {}
 
 surface.CreateFont( "Reb_HUD_small", {
 	font = "Arial",

@@ -68,86 +68,76 @@ anim.SetModelClass("models/Humans/Group03/Male_07.mdl", "citizen_male")
 anim.SetModelClass("models/Humans/Group03/Male_08.mdl", "citizen_male")
 anim.SetModelClass("models/Humans/Group03/Male_09.mdl", "citizen_male")
 
-
 -- Male citizen animation tree.
 anim.citizen_male = {
 	normal = {
-		idle = {ACT_IDLE, ACT_IDLE_ANGRY_SMG1},
-		idle_crouch = {ACT_COVER_LOW, ACT_COVER_LOW},
-		walk = {ACT_WALK, ACT_WALK_AIM_RIFLE_STIMULATED},
-		walk_crouch = {ACT_WALK_CROUCH, ACT_WALK_CROUCH_AIM_RIFLE},
-		sprint = {"sprint_all", "sprint_all"},
-		run = {ACT_RUN, ACT_RUN_AIM_RIFLE_STIMULATED},
-		run_crouch = {ACT_RUN_CROUCH, ACT_RUN_CROUCH}
+		idle = ACT_IDLE_ANGRY_SMG1,
+		idle_crouch = ACT_COVER_LOW,
+		walk = ACT_WALK_AIM_RIFLE_STIMULATED,
+		walk_crouch = ACT_WALK_CROUCH_AIM_RIFLE,
+		sprint = "sprint_all",
+		run = ACT_RUN_AIM_RIFLE_STIMULATED,
+		run_crouch = ACT_RUN_CROUCH
 	},
 	pistol = {
-		idle = {ACT_IDLE, ACT_IDLE_ANGRY_SMG1},
-		idle_crouch = {ACT_COVER_LOW, ACT_COVER_LOW},
-		walk = {ACT_WALK, ACT_WALK_AIM_RIFLE_STIMULATED},
-		walk_crouch = {ACT_WALK_CROUCH, ACT_WALK_CROUCH_AIM_RIFLE},
-		run = {ACT_RUN, ACT_RUN_AIM_RIFLE_STIMULATED},
-		run_crouch = {ACT_RUN_CROUCH, ACT_RUN_CROUCH},
-		sprint = {"sprint_all", "sprint_all"},
+		idle = ACT_IDLE_ANGRY_SMG1,
+		idle_crouch = ACT_RANGE_AIM_SMG1_LOW,
+		walk = ACT_WALK_AIM_RIFLE_STIMULATED,
+		walk_crouch = ACT_WALK_CROUCH_AIM_RIFLE,
+		run = ACT_RUN_AIM_RIFLE_STIMULATED,
+		run_crouch = ACT_RUN_CROUCH,
+		sprint = "sprint_all",
 		attack = ACT_GESTURE_RANGE_ATTACK_PISTOL,
 		reload = ACT_RELOAD_PISTOL
 	},
 	smg = {
-		idle = {ACT_IDLE_SMG1_RELAXED, ACT_IDLE_ANGRY_SMG1},
-		idle_crouch = {ACT_COVER_LOW, ACT_COVER_LOW},
-		walk = {ACT_WALK_RIFLE_RELAXED, ACT_WALK_AIM_RIFLE_STIMULATED},
-		walk_crouch = {ACT_WALK_CROUCH, ACT_WALK_CROUCH_AIM_RIFLE},
-		run = {ACT_RUN_RIFLE_RELAXED, ACT_RUN_AIM_RIFLE_STIMULATED},
-		run_crouch = {ACT_RUN_CROUCH, ACT_RUN_CROUCH},
-		sprint = {"sprint_all", "sprint_all"},
+		idle = ACT_IDLE_ANGRY_SMG1,
+		idle_crouch = ACT_RANGE_AIM_SMG1_LOW,
+		walk = ACT_WALK_AIM_RIFLE_STIMULATED,
+		walk_crouch = ACT_WALK_CROUCH_AIM_RIFLE,
+		run = ACT_RUN_AIM_RIFLE_STIMULATED,
+		run_crouch = ACT_RUN_CROUCH,
+		sprint = "sprint_all",
 		attack = ACT_GESTURE_RANGE_ATTACK_SMG1,
 		reload = ACT_GESTURE_RELOAD_SMG1
 	},
 	shotgun = {
-		idle = {ACT_IDLE_SHOTGUN_RELAXED, ACT_IDLE_ANGRY_SMG1},
-		idle_crouch = {ACT_COVER_LOW, ACT_COVER_LOW},
-		walk = {ACT_WALK_RIFLE_RELAXED, ACT_WALK_AIM_RIFLE_STIMULATED},
-		walk_crouch = {ACT_WALK_CROUCH, ACT_WALK_CROUCH_AIM_RIFLE},
-		run = {ACT_RUN_RIFLE_RELAXED, ACT_RUN_AIM_RIFLE_STIMULATED},
-		run_crouch = {ACT_RUN_CROUCH, ACT_RUN_CROUCH},
-		sprint = {"sprint_all", "sprint_all"},
+		idle = ACT_IDLE_ANGRY_SMG1,
+		idle_crouch = ACT_RANGE_AIM_SMG1_LOW,
+		walk = ACT_WALK_AIM_RIFLE_STIMULATED,
+		walk_crouch = ACT_WALK_CROUCH_AIM_RIFLE,
+		run = ACT_RUN_AIM_RIFLE_STIMULATED,
+		run_crouch = ACT_RUN_CROUCH,
+		sprint = "sprint_all",
 		attack = ACT_GESTURE_RANGE_ATTACK_SHOTGUN
 	},
 	grenade = {
-		idle = {ACT_IDLE, ACT_IDLE_MANNEDGUN},
-		idle_crouch = {ACT_COVER_LOW, ACT_COVER_LOW},
-		walk = {ACT_WALK, ACT_WALK_AIM_RIFLE},
-		walk_crouch = {ACT_WALK_CROUCH, ACT_WALK_CROUCH_AIM_RIFLE},
-		run = {ACT_RUN, ACT_RUN_AIM_RIFLE_STIMULATED},
-		run_crouch = {ACT_RUN_CROUCH, ACT_RUN_CROUCH},
-		sprint = {"sprint_all", "sprint_all"},
+		idle = ACT_IDLE_MANNEDGUN,
+		idle_crouch = ACT_RANGE_AIM_SMG1_LOW,
+		walk = ACT_WALK_AIM_RIFLE,
+		walk_crouch = ACT_WALK_CROUCH_AIM_RIFLE,
+		run = ACT_RUN_AIM_RIFLE_STIMULATED,
+		run_crouch = ACT_RUN_CROUCH,
+		sprint = "sprint_all",
 		attack = ACT_RANGE_ATTACK_THROW
 	},
 	melee = {
-		idle = {ACT_IDLE_SUITCASE, ACT_IDLE_ANGRY_MELEE},
-		idle_crouch = {ACT_COVER_LOW, ACT_COVER_LOW},
-		walk = {ACT_WALK, ACT_WALK_AIM_RIFLE},
-		walk_crouch = {ACT_WALK_CROUCH, ACT_WALK_CROUCH},
-		run = {ACT_RUN, ACT_RUN},
-		run_crouch = {ACT_RUN_CROUCH, ACT_RUN_CROUCH},
-		sprint = {"sprint_all", "sprint_all"},
+		idle = ACT_IDLE_ANGRY_MELEE,
+		idle_crouch = ACT_COVER_LOW,
+		walk = ACT_WALK_AIM_RIFLE,
+		walk_crouch = ACT_WALK_CROUCH,
+		run = ACT_RUN,
+		run_crouch = ACT_RUN_CROUCH,
+		sprint = "sprint_all",
 		attack = ACT_MELEE_ATTACK_SWING
 	},
 	glide = ACT_GLIDE
 }
 
-
-local playerMeta = FindMetaTable("Player")
-
-WEAPON_LOWERED = 1
-WEAPON_RAISED = 2
-
 local math_NormalizeAngle = math.NormalizeAngle
 local string_find = string.find
 local string_lower = string.lower
 local getAnimClass = anim.GetClass
-local getHoldType = util.GetHoldType
-local config = config
-
 local Length2D = FindMetaTable("Vector").Length2D
 
 function GM:CalcMainActivity(client, velocity)
@@ -180,16 +170,6 @@ function GM:CalcMainActivity(client, velocity)
 			action = action.."_crouch"
 		end
 
-		local state = WEAPON_RAISED
-
-		if (IsValid(weapon)) then
-			holdType = getHoldType(weapon)
-			--Possible holster code here
-			
-			state = WEAPON_RAISED
-			
-		end
-		
 		local animClass = anim[class]
 
 		if (!animClass) then
@@ -210,13 +190,13 @@ function GM:CalcMainActivity(client, velocity)
 		if (!client:OnGround()) then
 			client.CalcIdeal = animClass.glide or ACT_GLIDE
 		elseif (client:InVehicle()) then
-			if state == WEAPON_RAISED and weapon.Base == "reb_wep_base" then
+			if weapon.Base == "reb_wep_base" then
 				client.CalcIdeal = ACT_HL2MP_SIT_SMG1
 			else
 				client.CalcIdeal = ACT_HL2MP_SIT
 			end
 		elseif (animation) then
-			value = animation[state]
+			value = animation
 
 			if (type(value) == "string") then
 				client.CalcSeqOverride = client:LookupSequence(value)
@@ -243,34 +223,6 @@ function GM:CalcMainActivity(client, velocity)
 
 		return client.CalcIdeal or ACT_IDLE, client.CalcSeqOverride or -1
 	end
-end
-
-if (SERVER) then
-
-	hook.Add("KeyPress","SprintTap",function(client,key)
-		if (!client:Alive()) then return end
-		if key == IN_FORWARD then
-			if client.lastPress then
-
-				if client.lastPress+0.5 > CurTime() then
-
-					client.sprint = true
-					client.lastPress = nil
-				else
-					client.sprint = false
-					client.lastPress = CurTime()
-				end
-			else
-				client.sprint = false
-				client.lastPress = CurTime()
-			end
-		end
-	end)
-	
-	hook.Add("PlayerSpawn","Sprint_Spawn", function(client)
-		client.sprint = false
-	end)
-
 end
 
 function GM:DoAnimationEvent(client, event, data)

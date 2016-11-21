@@ -81,8 +81,9 @@ function SWEP:Holster()
 end
 
 function SWEP:Precache()
-	util.PrecacheSound("npc/vort/claw_swing1.wav")
-	util.PrecacheSound("npc/vort/claw_swing2.wav")
+	util.PrecacheSound("reb/weapons/swing1.wav")
+	util.PrecacheSound("reb/weapons/swing2.wav")
+	util.PrecacheSound("reb/weapons/swing3.wav")
 	util.PrecacheSound("physics/plastic/plastic_box_impact_hard1.wav")	
 	util.PrecacheSound("physics/plastic/plastic_box_impact_hard2.wav")	
 	util.PrecacheSound("physics/plastic/plastic_box_impact_hard3.wav")	
@@ -116,7 +117,7 @@ function SWEP:PrimaryAttack()
 	self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
 
 	if (SERVER) then
-		self.Owner:EmitSound("npc/vort/claw_swing"..math.random(1, 2)..".wav")
+		self.Owner:EmitSound("reb/weapons/swing"..math.random(1, 3)..".wav")
 	end
 
 	local damage = self.Primary.Damage

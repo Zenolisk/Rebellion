@@ -16,7 +16,7 @@ SWEP.Spawnable			= true
 SWEP.AdminSpawnable		= true
 SWEP.UseHands = true
 
-SWEP.ViewModel			= "models/weapons/c_pistol.mdl"
+SWEP.ViewModel			= "models/weapons/pistol_reb/c_pistol.mdl"
 SWEP.WorldModel			= "models/weapons/w_pistol.mdl"
 
 SWEP.Weight				= 5
@@ -42,7 +42,7 @@ SWEP.Secondary.Ammo			= "none"
 SWEP.ShellType = 0
 SWEP.ShellAng = Angle(-15, 0, 0)
 SWEP.muzAdjust = Angle(0, 0, 0)
-SWEP.originMod = Vector(-2.5, -4, 0.7)
-SWEP.ironMod = Vector(-3, -6, 2)
+SWEP.originMod = Vector(2, -4, 1)
+SWEP.ironMod = Vector(-1, -6, 2)
 SWEP.MuzSize = 1
-SWEP.weaponLength = 1
+SWEP.weaponLength = 5
